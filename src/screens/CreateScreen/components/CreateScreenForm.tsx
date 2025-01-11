@@ -44,6 +44,9 @@ function CreateScreenForm(props: CreateScreenFormProps) {
         onChangeText={value => dispatch({ type: 'UPDATE_TITLE', value })}
       />
       <DateInput
+        day={state.day}
+        month={state.month}
+        year={state.year}
         onChangeDay={value => dispatch({ type: 'UPDATE_DAY', value })}
         onChangeMonth={value => dispatch({ type: 'UPDATE_MONTH', value })}
         onChangeYear={value => dispatch({ type: 'UPDATE_YEAR', value })}
