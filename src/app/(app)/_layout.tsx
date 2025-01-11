@@ -1,46 +1,31 @@
-import { Atom, AudioWaveform } from '@tamagui/lucide-icons';
-import { Link, Tabs } from 'expo-router';
-import { Button, useTheme } from 'tamagui';
+import { Stack } from 'expo-router';
+import { useTheme } from 'tamagui';
 
 function AppLayout() {
   const theme = useTheme();
 
   return (
-    <Tabs
+    <Stack
+      initialRouteName="index"
       screenOptions={{
-        tabBarActiveTintColor: theme.red10.val,
-        tabBarStyle: {
-          backgroundColor: theme.background.val,
-          borderTopColor: theme.borderColor.val,
-        },
-        headerStyle: {
-          backgroundColor: theme.background.val,
-          borderBottomColor: theme.borderColor.val,
-        },
+        animation: 'fade',
         headerTintColor: theme.color.val,
+        headerStyle: { backgroundColor: theme.background.val },
       }}>
-      <Tabs.Screen
-        name="index"
+      <Stack.Screen name="index" options={{ title: 'Home' }} />
+      <Stack.Screen
+        name="create"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <Atom color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Button mr="$4" bg="$purple8" color="$purple12">
-                Hello!
-              </Button>
-            </Link>
-          ),
+          title: 'Create',
+          gestureEnabled: true,
+          presentation: 'modal',
+          gestureDirection: 'horizontal',
+          contentStyle: {
+            backgroundColor: theme.background.val,
+          },
         }}
       />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <AudioWaveform color={color} />,
-        }}
-      />
-    </Tabs>
+    </Stack>
   );
 }
 
