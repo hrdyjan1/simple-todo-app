@@ -12,7 +12,7 @@ interface TaskBase {
 }
 
 interface TaskListProps<T extends TaskBase> {
-  onAddTaskPress: () => void;
+  onCreateTaskPress: () => void;
   data: T[];
 }
 
@@ -22,7 +22,7 @@ function TaskList<T extends TaskBase>(props: TaskListProps<T>) {
   );
 
   const ListEmptyComponent = () => (
-    <EmptyTaskList onAddTaskPress={props.onAddTaskPress} />
+    <EmptyTaskList onCreateTaskPress={props.onCreateTaskPress} />
   );
 
   return (
