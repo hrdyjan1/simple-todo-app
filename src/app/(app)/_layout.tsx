@@ -10,6 +10,8 @@ function AppLayout() {
       initialRouteName="index"
       screenOptions={{
         animation: 'fade',
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
         headerTintColor: theme.color.val,
         headerStyle: { backgroundColor: theme.background.val },
       }}>
@@ -28,10 +30,8 @@ function AppLayout() {
       <Stack.Screen
         name="create"
         options={{
-          title: 'Create',
-          gestureEnabled: true,
+          title: '',
           presentation: 'modal',
-          gestureDirection: 'horizontal',
           contentStyle: { backgroundColor: theme.background.val },
         }}
       />

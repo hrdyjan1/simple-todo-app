@@ -14,7 +14,7 @@ function HomeScreen() {
 
   return (
     <Screen>
-      <TaskList data={data} onAddTaskPress={goToCreateTask} />
+      <TaskList data={data} onCreateTaskPress={goToCreateTask} />
       <Button
         size="$6"
         right="$4"

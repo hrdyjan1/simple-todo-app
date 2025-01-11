@@ -1,7 +1,7 @@
 import { Button, H3, Paragraph, Spacer, YStack } from 'tamagui';
 
 interface EmptyTaskListProps {
-  onAddTaskPress: () => void;
+  onCreateTaskPress: () => void;
 }
 
 function EmptyTaskList(props: EmptyTaskListProps) {
@@ -13,7 +13,7 @@ function EmptyTaskList(props: EmptyTaskListProps) {
         You don&apos;t have any tasks yet. Start by adding your first task!
       </Paragraph>
       <Spacer size="$4" />
-      <Button onPress={props.onAddTaskPress}>Add Task</Button>
+      <Button onPress={props.onCreateTaskPress}>Create Task</Button>
     </YStack>
   );
 }
