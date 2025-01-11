@@ -1,52 +1,25 @@
-import { ExternalLink } from '@tamagui/lucide-icons';
-import { Anchor, H2, Paragraph, XStack, YStack } from 'tamagui';
-import { ToastControl } from '../../components/Toast/ToastControl';
+import { Link } from 'expo-router';
+import { Button, H3, Spacer, YStack } from 'tamagui';
 
 function HomeScreen() {
   return (
-    <YStack f={1} ai="center" gap="$8" px="$10" pt="$5" bg="$background">
-      <H2>Tamagui + Expo</H2>
-
-      <ToastControl />
-
-      <XStack
-        ai="center"
-        jc="center"
-        fw="wrap"
-        gap="$1.5"
-        pos="absolute"
-        b="$8">
-        <Paragraph fos="$5">Add</Paragraph>
-
-        <Paragraph fos="$5" px="$2" py="$1" col="$blue10" bg="$blue5">
-          tamagui.config.ts
-        </Paragraph>
-
-        <Paragraph fos="$5">to root and follow the</Paragraph>
-
-        <XStack
-          ai="center"
-          gap="$1.5"
-          px="$2"
-          py="$1"
-          br="$3"
-          bg="$purple5"
-          hoverStyle={{ bg: '$purple6' }}
-          pressStyle={{ bg: '$purple4' }}>
-          <Anchor
-            href="https://tamagui.dev/docs/core/configuration"
-            textDecorationLine="none"
-            col="$purple10"
-            fos="$5">
-            Configuration guide
-          </Anchor>
-          <ExternalLink size="$1" col="$purple10" />
-        </XStack>
-
-        <Paragraph fos="$5" ta="center">
-          to configure your themes and tokens.
-        </Paragraph>
-      </XStack>
+    <YStack
+      flex={1}
+      bg="$background"
+      alignItems="center"
+      justifyContent="center">
+      <H3 color="$blue10">TODO: List of all tasks</H3>
+      <Spacer />
+      <Link href="/create" asChild>
+        <Button mr="$4" bg="$purple8" color="$purple12">
+          Create!
+        </Button>
+      </Link>
+      <Link href="/sign-in" asChild replace>
+        <Button mr="$4" bg="$red8" color="$red12">
+          Sign out!
+        </Button>
+      </Link>
     </YStack>
   );
 }

@@ -9,7 +9,7 @@ function NotFoundScreen() {
       <View flex={1} justifyContent="center" alignItems="center">
         <Text>This screen doesn&apos;t exist.</Text>
         <Spacer size="$2" />
-        <Link href="/">
+        <Link href="/" replace>
           <Text fontSize={18} color="$accent" textAlign="center">
             Go to home screen!
           </Text>
