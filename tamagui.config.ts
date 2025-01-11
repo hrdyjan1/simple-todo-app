@@ -1,6 +1,6 @@
 import { config as configBase, themes } from '@tamagui/config/v3';
 import { createTamagui } from 'tamagui';
-import Colors from './src/constants/Colors';
+import Colors from './src/styles/Colors';
 
 export const config = createTamagui({
   ...configBase,

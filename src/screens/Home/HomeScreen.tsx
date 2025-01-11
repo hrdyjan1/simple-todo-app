@@ -1,26 +1,30 @@
-import { Link } from 'expo-router';
-import { Button, H3, Spacer, YStack } from 'tamagui';
+import { Screen } from '@/src/components/Screen/Screen';
+import { TaskList } from '@/src/components/TaskList/TaskList';
+import { Plus } from '@tamagui/lucide-icons';
+import { router } from 'expo-router';
+import { Button } from 'tamagui';
+
+const data = [
+  { id: '1', name: 'Clean kitchen', status: 'DONE' as const },
+  { id: '2', name: 'Walk the dog 🐕', status: 'PENDING' as const },
+];
 
 function HomeScreen() {
+  const goToCreateTask = () => router.navigate('/create');
+
   return (
-    <YStack
-      flex={1}
-      bg="$background"
-      alignItems="center"
-      justifyContent="center">
-      <H3 color="$blue10">TODO: List of all tasks</H3>
-      <Spacer />
-      <Link href="/create" asChild>
-        <Button mr="$4" bg="$purple8" color="$purple12">
-          Create!
-        </Button>
-      </Link>
-      <Link href="/sign-in" asChild replace>
-        <Button mr="$4" bg="$red8" color="$red12">
-          Sign out!
-        </Button>
-      </Link>
-    </YStack>
+    <Screen>
+      <TaskList data={data} onAddTaskPress={goToCreateTask} />
+      <Button
+        size="$6"
+        right="$4"
+        bottom="$4"
+        zIndex={1000}
+        position="absolute"
+        onPress={goToCreateTask}
+        iconAfter={<Plus size="$2" />}
+      />
+    </Screen>
   );
 }
 
