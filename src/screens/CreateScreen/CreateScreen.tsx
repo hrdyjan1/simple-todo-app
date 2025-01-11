@@ -1,13 +1,11 @@
 import { Text, View } from 'tamagui';
 
-function SecondTabScreen() {
+function CreateScreen() {
   return (
     <View flex={1} alignItems="center" justifyContent="center" bg="$background">
-      <Text fontSize={20} color="$blue10">
-        Tab Two
-      </Text>
+      <Text color="$blue10">Todo</Text>
     </View>
   );
 }
 
-export { SecondTabScreen };
+export { CreateScreen };

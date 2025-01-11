@@ -1,3 +1,3 @@
-import { SecondTabScreen } from '../../screens/SecondTab/SecondTabScreen';
+import { CreateScreen } from '../../screens/CreateScreen/CreateScreen';
 
-export default SecondTabScreen;
+export default CreateScreen;

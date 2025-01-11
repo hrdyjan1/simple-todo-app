@@ -1,5 +1,6 @@
-import { Stack } from 'expo-router';
-import { useTheme } from 'tamagui';
+import { Menu } from '@tamagui/lucide-icons';
+import { router, Stack } from 'expo-router';
+import { Button, useTheme } from 'tamagui';
 
 function AppLayout() {
   const theme = useTheme();
@@ -12,7 +13,18 @@ function AppLayout() {
         headerTintColor: theme.color.val,
         headerStyle: { backgroundColor: theme.background.val },
       }}>
-      <Stack.Screen name="index" options={{ title: 'Home' }} />
+      <Stack.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          headerRight: () => (
+            <Button
+              icon={<Menu />}
+              onPressIn={() => router.navigate('/settings')}
+            />
+          ),
+        }}
+      />
       <Stack.Screen
         name="create"
         options={{
@@ -20,9 +32,15 @@ function AppLayout() {
           gestureEnabled: true,
           presentation: 'modal',
           gestureDirection: 'horizontal',
-          contentStyle: {
-            backgroundColor: theme.background.val,
-          },
+          contentStyle: { backgroundColor: theme.background.val },
+        }}
+      />
+      <Stack.Screen
+        name="settings"
+        options={{
+          animation: 'fade',
+          headerShown: false,
+          presentation: 'transparentModal',
         }}
       />
     </Stack>
