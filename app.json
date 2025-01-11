@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "simple-crypto-app",
-    "slug": "simple-crypto-app",
+    "name": "simple-todo-app",
+    "slug": "simple-todo-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
