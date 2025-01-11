@@ -1,12 +1,17 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import '../../tamagui-web.css';
 
-import { useEffect } from 'react';
-import { StatusBar, useColorScheme } from 'react-native';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
-import { Provider } from '../components/Provider';
+import { useEffect } from 'react';
+import { StatusBar, useColorScheme } from 'react-native';
 import { useTheme } from 'tamagui';
+import { Provider } from '../components/Provider';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -54,17 +59,19 @@ function RootLayoutNav() {
   const theme = useTheme();
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
+      <StatusBar
+        barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
+      />
       <Stack>
         <Stack.Screen
-          name='(tabs)'
+          name="(tabs)"
           options={{
             headerShown: false,
           }}
         />
 
         <Stack.Screen
-          name='modal'
+          name="modal"
           options={{
             title: 'Tamagui + Expo',
             presentation: 'modal',

@@ -1,10 +1,10 @@
-import { Toast, useToastController, useToastState } from '@tamagui/toast'
-import { Button, H4, XStack, YStack, isWeb } from 'tamagui'
+import { Toast, useToastController, useToastState } from '@tamagui/toast';
+import { Button, H4, XStack, YStack, isWeb } from 'tamagui';
 
 export function CurrentToast() {
-  const currentToast = useToastState()
+  const currentToast = useToastState();
 
-  if (!currentToast || currentToast.isHandledNatively) return null
+  if (!currentToast || currentToast.isHandledNatively) return null;
 
   return (
     <Toast
@@ -16,8 +16,7 @@ export function CurrentToast() {
       y={isWeb ? '$12' : 0}
       theme="purple"
       br="$6"
-      animation="quick"
-    >
+      animation="quick">
       <YStack ai="center" p="$2" gap="$2">
         <Toast.Title fow="bold">{currentToast.title}</Toast.Title>
         {!!currentToast.message && (
@@ -25,11 +24,11 @@ export function CurrentToast() {
         )}
       </YStack>
     </Toast>
-  )
+  );
 }
 
 export function ToastControl() {
-  const toast = useToastController()
+  const toast = useToastController();
 
   return (
     <YStack gap="$2" ai="center">
@@ -39,19 +38,17 @@ export function ToastControl() {
           onPress={() => {
             toast.show('Successfully saved!', {
               message: "Don't worry, we've got your data.",
-            })
-          }}
-        >
+            });
+          }}>
           Show
         </Button>
         <Button
           onPress={() => {
-            toast.hide()
-          }}
-        >
+            toast.hide();
+          }}>
           Hide
         </Button>
       </XStack>
     </YStack>
-  )
+  );
 }

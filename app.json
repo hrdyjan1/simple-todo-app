@@ -6,7 +6,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "simple-todo-app",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -33,14 +33,7 @@
       "expo-font",
       [
         "expo-build-properties",
-        {
-          "ios": {
-            "newArchEnabled": true
-          },
-          "android": {
-            "newArchEnabled": true
-          }
-        }
+        { "ios": { "newArchEnabled": true }, "android": { "newArchEnabled": true } }
       ]
     ],
     "experiments": {

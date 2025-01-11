@@ -25,25 +25,13 @@
     "sourceMap": false,
     "strictNullChecks": true,
     "target": "es2020",
-    "types": [
-      "node"
-    ],
-    "lib": [
-      "dom",
-      "esnext"
-    ]
+    "types": ["node"],
+    "lib": ["dom", "esnext"]
   },
-  "exclude": [
-    "_"
-  ],
+  "exclude": ["_"],
   "typeAcquisition": {
     "enable": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
   "extends": "expo/tsconfig.base"
 }
