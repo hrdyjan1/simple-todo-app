@@ -2,7 +2,7 @@ import { Atom, AudioWaveform } from '@tamagui/lucide-icons';
 import { Link, Tabs } from 'expo-router';
 import { Button, useTheme } from 'tamagui';
 
-export default function TabLayout() {
+function AppLayout() {
   const theme = useTheme();
 
   return (
@@ -43,3 +43,5 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+export default AppLayout;

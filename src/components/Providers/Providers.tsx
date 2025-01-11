@@ -1,25 +1,28 @@
 import { ToastProvider, ToastViewport } from '@tamagui/toast';
 import { useColorScheme } from 'react-native';
 import { TamaguiProvider, type TamaguiProviderProps } from 'tamagui';
-import { config } from '../../tamagui.config';
-import { CurrentToast } from './CurrentToast';
+import { config } from '../../../tamagui.config';
+import { GeneralToast } from '../Toast/GeneralToast';
 
-export function Provider({
-  children,
-  ...rest
-}: Omit<TamaguiProviderProps, 'config'>) {
+interface ProvidersProps extends React.PropsWithChildren {
+  settings?: Omit<TamaguiProviderProps, 'config' | 'children'>;
+}
+
+function Providers(props: ProvidersProps) {
   const colorScheme = useColorScheme();
 
   return (
     <TamaguiProvider
       config={config}
       defaultTheme={colorScheme === 'dark' ? 'dark' : 'light'}
-      {...rest}>
+      {...props.settings}>
       <ToastProvider swipeDirection="horizontal" duration={6000}>
-        {children}
-        <CurrentToast />
+        {props.children}
+        <GeneralToast />
         <ToastViewport top="$8" left={0} right={0} />
       </ToastProvider>
     </TamaguiProvider>
   );
 }
+
+export { Providers };
