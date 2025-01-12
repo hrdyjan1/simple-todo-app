@@ -1,4 +1,4 @@
-import { getDate } from '../../../../../components/TaskForm/utils/getDate';
+import { getDate } from '../getDate';
 
 describe('getDate', () => {
   test('should return a valid timestamp for valid date inputs', () => {

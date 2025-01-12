@@ -1,10 +1,12 @@
-import { createTaskFromReducer } from '../../../../../components/TaskForm/utils/createTaskFromReducer';
+import { taskFromReducer } from '../taskFromReducer';
 
-describe('createTaskFromReducer', () => {
+describe('taskFromReducer', () => {
   const initialState = {
+    id: 'id123',
     day: '01',
     month: '01',
     year: '2025',
+    status: 'PENDING' as const,
     title: 'Initial Title',
   };
 
@@ -18,7 +20,7 @@ describe('createTaskFromReducer', () => {
     [{ type: 'UPDATE_YEAR', value: '202456' }, { year: '2024' }],
   ])('updates state for action %j', (action, expected) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const newState = createTaskFromReducer(initialState, action as any);
+    const newState = taskFromReducer(initialState, action as any);
     expect(newState).toEqual({ ...initialState, ...expected });
   });
 });

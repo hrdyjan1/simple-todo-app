@@ -17,7 +17,7 @@ type State = {
   status: 'PENDING' | 'DONE';
 };
 
-function createTaskFromReducer(state: State, action: Action): State {
+function taskFromReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'UPDATE_TITLE':
       return { ...state, title: action.value };
@@ -32,4 +32,4 @@ function createTaskFromReducer(state: State, action: Action): State {
   }
 }
 
-export { createTaskFromReducer };
+export { taskFromReducer };
