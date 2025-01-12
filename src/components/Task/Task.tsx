@@ -1,5 +1,5 @@
 import { isDefined } from '@/src/constants/isDefined';
-import { Check, Square, Trash } from '@tamagui/lucide-icons';
+import { Check, Edit3, Square, Trash } from '@tamagui/lucide-icons';
 import { Button, Spacer, Text, XStack, YStack } from 'tamagui';
 
 interface TaskProps {
@@ -7,6 +7,7 @@ interface TaskProps {
   title: string;
   subTitle?: string;
   status: 'DONE' | 'PENDING';
+  onEdit: (id: string) => void;
   onDelete: (id: string) => void;
   onToggleStatus: (id: string) => void;
 }
@@ -31,6 +32,15 @@ function Task(props: TaskProps) {
           </Text>
         ) : null}
       </YStack>
+      <Spacer />
+      <Button
+        width="$4"
+        height="$4"
+        padding="$2"
+        borderRadius="$round"
+        onPress={() => props.onEdit(props.id)}>
+        <Edit3 size="$1" />
+      </Button>
       <Spacer />
       <Button
         width="$4"

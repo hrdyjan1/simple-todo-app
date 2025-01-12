@@ -16,12 +16,14 @@ function HomeScreen() {
   const [, toggleTaskStatus] = useAtom(toggleStatusTaskAtom);
 
   const goToCreateTask = () => router.navigate('/create');
+  const goToEditTask = (id: string) => router.navigate(`/edit/${id}`);
 
   return (
     <Screen px={0} py={0}>
       <TaskList
         data={Object.values(taskList)}
         onRemoveTaskPress={removeTask}
+        onEditTaskPress={goToEditTask}
         onCreateTaskPress={goToCreateTask}
         onrToggleTaskStatusPress={toggleTaskStatus}
       />

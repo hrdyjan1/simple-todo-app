@@ -1,30 +1,31 @@
+import { TaskType } from '@/src/atoms/TaskAtom';
 import { DateInput } from '@/src/components/DateInput/DateInput';
 import { useToastController } from '@tamagui/toast';
 import React from 'react';
 import { Button, H2, Input, Spacer, YStack } from 'tamagui';
 import { createTaskFromReducer } from './utils/createTaskFromReducer';
+import { defaultInitialTaskFormState } from './utils/defaultInitialTaskFormState';
 import { getDate } from './utils/getDate';
-
-interface TaskBase {
-  date: number;
-  title: string;
-}
 
 interface CreateScreenFormProps {
   initialState?: {
+    id: string;
     day: string;
     month: string;
     year: string;
     title: string;
+    status: 'PENDING' | 'DONE';
   };
-  handleCreateTask: (task: TaskBase) => void;
+  title: string;
+  actionButtonTitle: string;
+  onActionPress: (task: TaskType) => void;
 }
 
-function CreateScreenForm(props: CreateScreenFormProps) {
+function TaskForm(props: CreateScreenFormProps) {
   const toast = useToastController();
   const [state, dispatch] = React.useReducer(
     createTaskFromReducer,
-    props.initialState ?? { title: '', day: '', month: '', year: '' },
+    props.initialState ?? defaultInitialTaskFormState,
   );
 
   const onCreateTaskPress = () => {
@@ -37,12 +38,12 @@ function CreateScreenForm(props: CreateScreenFormProps) {
       return toast.show('Form error', { message: 'Wrong form of date' });
     }
 
-    props.handleCreateTask({ title: state.title, date });
+    props.onActionPress({ ...state, date });
   };
 
   return (
     <YStack flex={1} padding={20} justifyContent="center" gap="$4">
-      <H2 ta="center">Create Task</H2>
+      <H2 ta="center">{props.title}</H2>
       <Spacer size="$2" />
       <Input
         placeholder="Title"
@@ -59,9 +60,9 @@ function CreateScreenForm(props: CreateScreenFormProps) {
       />
 
       <Spacer size="$4" />
-      <Button onPress={onCreateTaskPress}>Create</Button>
+      <Button onPress={onCreateTaskPress}>{props.actionButtonTitle}</Button>
     </YStack>
   );
 }
 
-export { CreateScreenForm };
+export { TaskForm };

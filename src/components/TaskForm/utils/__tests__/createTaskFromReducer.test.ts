@@ -1,4 +1,4 @@
-import { createTaskFromReducer } from '../createTaskFromReducer';
+import { createTaskFromReducer } from '../../../../../components/TaskForm/utils/createTaskFromReducer';
 
 describe('createTaskFromReducer', () => {
   const initialState = {

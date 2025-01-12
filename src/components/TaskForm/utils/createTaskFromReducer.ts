@@ -8,7 +8,14 @@ type Action =
   | UpdateMonthAction
   | UpdateYearAction
   | UpdateNameAction;
-type State = { day: string; month: string; year: string; title: string };
+type State = {
+  id: string;
+  day: string;
+  month: string;
+  year: string;
+  title: string;
+  status: 'PENDING' | 'DONE';
+};
 
 function createTaskFromReducer(state: State, action: Action): State {
   switch (action.type) {

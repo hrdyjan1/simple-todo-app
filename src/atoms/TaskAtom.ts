@@ -20,6 +20,18 @@ const createTaskAtom = atom(null, (_get, set, value: TaskType) => {
   });
 });
 
+const editTaskAtom = atom(null, (_get, set, value: TaskType) => {
+  set(taskListAtom, async prev => {
+    const list = await prev;
+    return { ...list, [value.id]: value };
+  });
+});
+
+const getTaskByIdAtom = atom(async get => {
+  const taskList = await get(taskListAtom); // Get the task list from the atom
+  return (id: string) => taskList[id]; // Return a function that retrieves a task by ID
+});
+
 const removeTaskAtom = atom(null, (_get, set, id: string) => {
   set(taskListAtom, async prev => {
     const list = await prev;
@@ -46,6 +58,8 @@ const toggleStatusTaskAtom = atom(null, (_get, set, id: string) => {
 
 export {
   createTaskAtom,
+  editTaskAtom,
+  getTaskByIdAtom,
   removeTaskAtom,
   taskListAtom,
   toggleStatusTaskAtom,
