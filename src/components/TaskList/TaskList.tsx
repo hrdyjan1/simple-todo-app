@@ -7,6 +7,7 @@ import { EmptyTaskList } from './components/EmptyTaskList';
 
 interface TaskListProps {
   onCreateTaskPress: () => void;
+  onEditTaskPress: (id: string) => void;
   onRemoveTaskPress: (id: string) => void;
   onrToggleTaskStatusPress: (id: string) => void;
   data: TaskType[];
@@ -18,6 +19,7 @@ function TaskList(props: TaskListProps) {
       id={item.id}
       title={item.title}
       status={item.status}
+      onEdit={props.onEditTaskPress}
       onDelete={props.onRemoveTaskPress}
       onToggleStatus={props.onrToggleTaskStatusPress}
       subTitle={new Date(item.date).toISOString().split('T')[0]}

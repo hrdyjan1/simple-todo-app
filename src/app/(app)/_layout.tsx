@@ -20,6 +20,7 @@ function AppLayout() {
     <Stack
       initialRouteName="index"
       screenOptions={{
+        title: '',
         animation: 'fade',
         gestureEnabled: true,
         gestureDirection: 'horizontal',
@@ -38,13 +39,6 @@ function AppLayout() {
               onPressIn={() => router.navigate('/settings')}
             />
           ),
-        }}
-      />
-      <Stack.Screen
-        name="create"
-        options={{
-          title: '',
-          contentStyle: { backgroundColor: theme.background.val },
         }}
       />
       <Stack.Screen
