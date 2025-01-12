@@ -1,20 +1,30 @@
+import {
+  removeTaskAtom,
+  taskListAtom,
+  toggleStatusTaskAtom,
+} from '@/src/atoms/TaskAtom';
 import { Screen } from '@/src/components/Screen/Screen';
 import { TaskList } from '@/src/components/TaskList/TaskList';
 import { Plus } from '@tamagui/lucide-icons';
 import { router } from 'expo-router';
+import { useAtom } from 'jotai';
 import { Button } from 'tamagui';
 
-const data = [
-  { id: '1', name: 'Clean kitchen', status: 'DONE' as const },
-  { id: '2', name: 'Walk the dog 🐕', status: 'PENDING' as const },
-];
-
 function HomeScreen() {
+  const [taskList] = useAtom(taskListAtom);
+  const [, removeTask] = useAtom(removeTaskAtom);
+  const [, toggleTaskStatus] = useAtom(toggleStatusTaskAtom);
+
   const goToCreateTask = () => router.navigate('/create');
 
   return (
-    <Screen>
-      <TaskList data={data} onCreateTaskPress={goToCreateTask} />
+    <Screen px={0} py={0}>
+      <TaskList
+        data={Object.values(taskList)}
+        onRemoveTaskPress={removeTask}
+        onCreateTaskPress={goToCreateTask}
+        onrToggleTaskStatusPress={toggleTaskStatus}
+      />
       <Button
         size="$6"
         right="$4"

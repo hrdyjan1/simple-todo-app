@@ -1,25 +1,37 @@
+import { isDefined } from '@/src/constants/isDefined';
 import { Check, Square, Trash } from '@tamagui/lucide-icons';
-import { Button, Spacer, Text, XStack } from 'tamagui';
+import { Button, Spacer, Text, XStack, YStack } from 'tamagui';
 
 interface TaskProps {
   id: string;
-  name: string;
+  title: string;
+  subTitle?: string;
   status: 'DONE' | 'PENDING';
   onDelete: (id: string) => void;
+  onToggleStatus: (id: string) => void;
 }
 
 function Task(props: TaskProps) {
   return (
-    <XStack ai="center" py="$4">
+    <XStack
+      ai="center"
+      py="$4"
+      px="$4"
+      onPress={() => props.onToggleStatus(props.id)}>
       {props.status === 'DONE' ? (
         <Check color="$green10" />
       ) : (
         <Square color="$gray10" />
       )}
       <Spacer />
-      <Text flex={1} numberOfLines={1}>
-        {props.name}
-      </Text>
+      <YStack f={1} justifyContent="center">
+        <Text numberOfLines={1}>{props.title}</Text>
+        {isDefined(props.subTitle) ? (
+          <Text color="$gray10" numberOfLines={1}>
+            {props.subTitle}
+          </Text>
+        ) : null}
+      </YStack>
       <Spacer />
       <Button
         p="$2"
