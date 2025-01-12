@@ -23,7 +23,7 @@ function Task(props: TaskProps) {
         <Square color="$gray10" size="$1" />
       )}
       <Spacer />
-      <YStack f={1} justifyContent="center">
+      <YStack flex={1} justifyContent="center">
         <Text numberOfLines={1}>{props.title}</Text>
         {isDefined(props.subTitle) ? (
           <Text color="$gray10" numberOfLines={1}>
@@ -33,9 +33,9 @@ function Task(props: TaskProps) {
       </YStack>
       <Spacer />
       <Button
-        p="$2"
-        w="$4"
-        h="$4"
+        width="$4"
+        height="$4"
+        padding="$2"
         borderRadius="$round"
         onPress={() => props.onDelete(props.id)}>
         <Trash size="$1" />

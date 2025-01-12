@@ -2,7 +2,7 @@ import { ToastProvider, ToastViewport } from '@tamagui/toast';
 import { useColorScheme } from 'react-native';
 import { TamaguiProvider, type TamaguiProviderProps } from 'tamagui';
 import { config } from '../../../tamagui.config';
-import { Toast } from '../Toast/GeneralToast';
+import { Toast } from '../Toast/Toast';
 
 interface ProvidersProps extends React.PropsWithChildren {
   settings?: Omit<TamaguiProviderProps, 'config' | 'children'>;

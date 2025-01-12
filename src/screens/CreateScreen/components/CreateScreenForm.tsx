@@ -41,7 +41,7 @@ function CreateScreenForm(props: CreateScreenFormProps) {
   };
 
   return (
-    <YStack f={1} padding={20} justifyContent="center" gap="$4">
+    <YStack flex={1} padding={20} justifyContent="center" gap="$4">
       <H2 ta="center">Create Task</H2>
       <Spacer size="$2" />
       <Input

@@ -2,7 +2,7 @@ import { config as configBase, themes } from '@tamagui/config/v3';
 import { createTamagui } from 'tamagui';
 import Colors from './src/styles/Colors';
 
-export const config = createTamagui({
+const config = createTamagui({
   ...configBase,
   themes: {
     ...themes,
@@ -11,10 +11,11 @@ export const config = createTamagui({
   },
 });
 
-export default config;
-
-export type Conf = typeof config;
+type Conf = typeof config;
 
 declare module 'tamagui' {
   interface TamaguiCustomConfig extends Conf {}
 }
+
+export default config;
+export { config, type Conf };

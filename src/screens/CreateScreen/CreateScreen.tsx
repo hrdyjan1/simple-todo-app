@@ -23,7 +23,7 @@ function CreateScreen() {
     <Screen>
       <KeyboardView>
         <ScrollView
-          f={1}
+          flex={1}
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={globalStyles.flexOne}>
           <CreateScreenForm handleCreateTask={handleCreateTask} />

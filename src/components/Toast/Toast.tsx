@@ -17,7 +17,7 @@ function Toast() {
       viewportName={currentToast.viewportName}
       exitStyle={{ opacity: 0, scale: 1, y: -20 }}
       enterStyle={{ opacity: 0, scale: 0.5, y: -25 }}>
-      <YStack ai="center" p="$2" gap="$2">
+      <YStack alignItems="center" padding="$2" gap="$2">
         <TamguiToast.Title fow="bold">{currentToast.title}</TamguiToast.Title>
         {!!currentToast.message && (
           <TamguiToast.Description>

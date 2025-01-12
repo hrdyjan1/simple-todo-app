@@ -8,7 +8,11 @@ function ModalContent(props: ModalContentProps) {
   const router = useRouter();
 
   return (
-    <View f={1} ai="center" jc="center" backgroundColor="rgba(0, 0, 0, 0.5)">
+    <View
+      flex={1}
+      alignItems="center"
+      justifyContent="center"
+      backgroundColor="rgba(0, 0, 0, 0.5)">
       <Pressable style={StyleSheet.absoluteFill} onPressIn={router.back} />
       <View width="80%" p={20} backgroundColor="$background" borderRadius="$4">
         {props.children}

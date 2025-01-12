@@ -1,6 +1,9 @@
 function getDate(params: { year: string; month: string; day: string }) {
   try {
-    return new Date(`${params.year}-${params.month}-${params.day}`).getTime();
+    const value = new Date(
+      `${params.year}-${params.month}-${params.day}`,
+    ).getTime();
+    return isNaN(value) ? null : value;
   } catch {
     return null;
   }

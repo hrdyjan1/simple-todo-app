@@ -6,7 +6,6 @@ import { Button, useTheme } from 'tamagui';
 
 function AppLayout() {
   const theme = useTheme();
-
   const [isUserAuth] = useAtom(isUserAuthAtom);
 
   // Only require authentication within the (app) group's layout as users

@@ -10,8 +10,7 @@ import { Button, H2, Input, ScrollView, Spacer, YStack } from 'tamagui';
 
 function SignInScreen() {
   const toast = useToastController();
-  const [user, setUser] = useAtom(userAtom);
-  console.log('🚀 ~ SignInScreen ~ user:', user);
+  const [, setUser] = useAtom(userAtom);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -26,11 +25,11 @@ function SignInScreen() {
     <Screen>
       <KeyboardView>
         <ScrollView
-          f={1}
+          flex={1}
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={globalStyles.flexOne}>
-          <YStack f={1} padding={20} justifyContent="center" gap="$4">
-            <H2 ta="center">Welcome</H2>
+          <YStack flex={1} padding={20} justifyContent="center" gap="$4">
+            <H2 textAlign="center">Welcome</H2>
 
             <Spacer size="$2" />
 
