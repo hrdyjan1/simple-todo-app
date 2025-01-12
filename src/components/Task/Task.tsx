@@ -14,14 +14,13 @@ interface TaskProps {
 function Task(props: TaskProps) {
   return (
     <XStack
-      ai="center"
-      py="$4"
-      px="$4"
+      padding="$4"
+      alignItems="center"
       onPress={() => props.onToggleStatus(props.id)}>
       {props.status === 'DONE' ? (
-        <Check color="$green10" />
+        <Check color="$green10" size="$1" />
       ) : (
-        <Square color="$gray10" />
+        <Square color="$gray10" size="$1" />
       )}
       <Spacer />
       <YStack f={1} justifyContent="center">
@@ -39,7 +38,7 @@ function Task(props: TaskProps) {
         h="$4"
         borderRadius="$round"
         onPress={() => props.onDelete(props.id)}>
-        <Trash size={20} />
+        <Trash size="$1" />
       </Button>
     </XStack>
   );
