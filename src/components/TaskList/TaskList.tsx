@@ -1,24 +1,27 @@
-import { noop } from '@/src/constants/noop';
+import { TaskType } from '@/src/atoms/TaskAtom';
 import { globalStyles } from '@/src/styles/globalStyles';
 import { FlatList, ListRenderItem } from 'react-native';
-import { Separator, Stack } from 'tamagui';
+import { Separator, Spacer } from 'tamagui';
 import { Task } from '../Task/Task';
 import { EmptyTaskList } from './components/EmptyTaskList';
 
-interface TaskBase {
-  id: string;
-  name: string;
-  status: 'DONE' | 'PENDING';
-}
-
-interface TaskListProps<T extends TaskBase> {
+interface TaskListProps {
   onCreateTaskPress: () => void;
-  data: T[];
+  onRemoveTaskPress: (id: string) => void;
+  onrToggleTaskStatusPress: (id: string) => void;
+  data: TaskType[];
 }
 
-function TaskList<T extends TaskBase>(props: TaskListProps<T>) {
-  const renderItem: ListRenderItem<T> = ({ item }) => (
-    <Task id={item.id} name={item.name} status={item.status} onDelete={noop} />
+function TaskList(props: TaskListProps) {
+  const renderItem: ListRenderItem<TaskType> = ({ item }) => (
+    <Task
+      id={item.id}
+      title={item.title}
+      status={item.status}
+      onDelete={props.onRemoveTaskPress}
+      onToggleStatus={props.onrToggleTaskStatusPress}
+      subTitle={new Date(item.date).toISOString().split('T')[0]}
+    />
   );
 
   const ListEmptyComponent = () => (
@@ -26,15 +29,14 @@ function TaskList<T extends TaskBase>(props: TaskListProps<T>) {
   );
 
   return (
-    <Stack f={1} bg="$background">
-      <FlatList<T>
-        data={props.data}
-        renderItem={renderItem}
-        ItemSeparatorComponent={Separator}
-        ListEmptyComponent={ListEmptyComponent}
-        contentContainerStyle={globalStyles.flexOne}
-      />
-    </Stack>
+    <FlatList
+      data={props.data}
+      renderItem={renderItem}
+      ListFooterComponent={Spacer}
+      ItemSeparatorComponent={Separator}
+      ListEmptyComponent={ListEmptyComponent}
+      contentContainerStyle={globalStyles.flexGrowOne}
+    />
   );
 }
 

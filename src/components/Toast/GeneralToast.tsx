@@ -1,15 +1,15 @@
-import { Toast, useToastState } from '@tamagui/toast';
+import { Toast as TamguiToast, useToastState } from '@tamagui/toast';
 import { YStack, isWeb } from 'tamagui';
 
-function GeneralToast() {
+function Toast() {
   const currentToast = useToastState();
 
   if (!currentToast || currentToast.isHandledNatively) return null;
 
   return (
-    <Toast
+    <TamguiToast
       br="$6"
-      theme="purple"
+      theme="red"
       animation="quick"
       key={currentToast.id}
       y={isWeb ? '$12' : 0}
@@ -18,13 +18,15 @@ function GeneralToast() {
       exitStyle={{ opacity: 0, scale: 1, y: -20 }}
       enterStyle={{ opacity: 0, scale: 0.5, y: -25 }}>
       <YStack ai="center" p="$2" gap="$2">
-        <Toast.Title fow="bold">{currentToast.title}</Toast.Title>
+        <TamguiToast.Title fow="bold">{currentToast.title}</TamguiToast.Title>
         {!!currentToast.message && (
-          <Toast.Description>{currentToast.message}</Toast.Description>
+          <TamguiToast.Description>
+            {currentToast.message}
+          </TamguiToast.Description>
         )}
       </YStack>
-    </Toast>
+    </TamguiToast>
   );
 }
 
-export { GeneralToast };
+export { Toast };

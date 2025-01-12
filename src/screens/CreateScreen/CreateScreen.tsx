@@ -1,13 +1,21 @@
+import { createTaskAtom } from '@/src/atoms/TaskAtom';
 import { KeyboardView } from '@/src/components/KeyboardView/KeyboardView';
 import { Screen } from '@/src/components/Screen/Screen';
 import { globalStyles } from '@/src/styles/globalStyles';
 import { router } from 'expo-router';
+import { useAtom } from 'jotai';
 import { ScrollView } from 'tamagui';
 import { CreateScreenForm } from './components/CreateScreenForm';
 
 function CreateScreen() {
-  const handleCreateTask = (values: { date: number; title: string }) => {
-    console.log(values);
+  const [, createTask] = useAtom(createTaskAtom);
+
+  const handleCreateTask = (value: { date: number; title: string }) => {
+    createTask({
+      ...value,
+      status: 'PENDING',
+      id: new Date().getTime().toString(),
+    });
     router.dismissTo('/');
   };
 

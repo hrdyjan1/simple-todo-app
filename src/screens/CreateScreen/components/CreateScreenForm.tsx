@@ -1,7 +1,9 @@
 import { DateInput } from '@/src/components/DateInput/DateInput';
+import { useToastController } from '@tamagui/toast';
 import React from 'react';
 import { Button, H2, Input, Spacer, YStack } from 'tamagui';
 import { createTaskFromReducer } from './utils/createTaskFromReducer';
+import { getDate } from './utils/getDate';
 
 interface TaskBase {
   date: number;
@@ -18,20 +20,24 @@ interface CreateScreenFormProps {
   handleCreateTask: (task: TaskBase) => void;
 }
 
-const defaultInitialState: NonNullable<CreateScreenFormProps['initialState']> =
-  { title: '', day: '', month: '', year: '' };
-
 function CreateScreenForm(props: CreateScreenFormProps) {
+  const toast = useToastController();
   const [state, dispatch] = React.useReducer(
     createTaskFromReducer,
-    props.initialState ?? defaultInitialState,
+    props.initialState ?? { title: '', day: '', month: '', year: '' },
   );
 
   const onCreateTaskPress = () => {
-    props.handleCreateTask({
-      title: state.title,
-      date: new Date(`${state.year}-${state.month}-${state.day}`).getTime(),
-    });
+    const date = getDate(state);
+
+    if (!state.title) {
+      return toast.show('Form error', { message: 'No title' });
+    }
+    if (!date) {
+      return toast.show('Form error', { message: 'Wrong form of date' });
+    }
+
+    props.handleCreateTask({ title: state.title, date });
   };
 
   return (
