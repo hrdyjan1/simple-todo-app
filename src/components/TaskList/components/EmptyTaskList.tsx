@@ -6,10 +6,10 @@ interface EmptyTaskListProps {
 
 function EmptyTaskList(props: EmptyTaskListProps) {
   return (
-    <YStack f={1} jc="center" ai="center">
+    <YStack f={1} jc="center" ai="center" padding="$4">
       <H3>No Tasks Found</H3>
       <Spacer size="$2" />
-      <Paragraph>
+      <Paragraph textAlign="center">
         You don&apos;t have any tasks yet. Start by adding your first task!
       </Paragraph>
       <Spacer size="$4" />

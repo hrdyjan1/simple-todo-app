@@ -1,9 +1,21 @@
+import { isUserAuthAtom } from '@/src/atoms/UserAtom';
 import { Menu } from '@tamagui/lucide-icons';
-import { router, Stack } from 'expo-router';
+import { Redirect, router, Stack } from 'expo-router';
+import { useAtom } from 'jotai';
 import { Button, useTheme } from 'tamagui';
 
 function AppLayout() {
   const theme = useTheme();
+
+  const [isUserAuth] = useAtom(isUserAuthAtom);
+
+  // Only require authentication within the (app) group's layout as users
+  // need to be able to access the (auth) group and sign in again.
+  if (!isUserAuth) {
+    // On web, static rendering will stop here as the user is not authenticated
+    // in the headless Node process that the pages are rendered in.
+    return <Redirect href="/sign-in" />;
+  }
 
   return (
     <Stack
@@ -21,7 +33,9 @@ function AppLayout() {
           title: 'Home',
           headerRight: () => (
             <Button
-              icon={<Menu />}
+              p="$3"
+              icon={<Menu size="$1" />}
+              backgroundColor="$colorTransparent"
               onPressIn={() => router.navigate('/settings')}
             />
           ),
@@ -31,7 +45,6 @@ function AppLayout() {
         name="create"
         options={{
           title: '',
-          presentation: 'modal',
           contentStyle: { backgroundColor: theme.background.val },
         }}
       />
