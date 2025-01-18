@@ -1,4 +1,8 @@
-import { editTaskAtom, getTaskByIdAtom, TaskType } from '@/src/atoms/TaskAtom';
+import {
+  getTaskByIdAtom,
+  taskManagerAtom,
+  TaskType,
+} from '@/src/atoms/TaskListAtom';
 import { KeyboardView } from '@/src/components/KeyboardView/KeyboardView';
 import { Screen } from '@/src/components/Screen/Screen';
 import { TaskForm } from '@/src/components/TaskForm/TaskForm';
@@ -9,14 +13,14 @@ import { ScrollView } from 'tamagui';
 
 function EditScreen() {
   const params = useLocalSearchParams<{ id: string }>();
-  const [, editTask] = useAtom(editTaskAtom);
+  const [, manageTask] = useAtom(taskManagerAtom);
   const [getTaskById] = useAtom(getTaskByIdAtom);
 
   const task = getTaskById(params.id);
   const date = new Date(task.date);
 
   const handleEditTask = (value: TaskType) => {
-    editTask(value);
+    manageTask({ payload: value, type: 'EDIT' });
     router.dismissTo('/');
   };
 
