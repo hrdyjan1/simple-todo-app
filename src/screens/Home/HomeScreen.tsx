@@ -1,8 +1,4 @@
-import {
-  removeTaskAtom,
-  taskListAtom,
-  toggleStatusTaskAtom,
-} from '@/src/atoms/TaskAtom';
+import { taskListAtom, taskManagerAtom } from '@/src/atoms/TaskListAtom';
 import { Screen } from '@/src/components/Screen/Screen';
 import { TaskList } from '@/src/components/TaskList/TaskList';
 import { Plus } from '@tamagui/lucide-icons';
@@ -12,11 +8,15 @@ import { Button } from 'tamagui';
 
 function HomeScreen() {
   const [taskList] = useAtom(taskListAtom);
-  const [, removeTask] = useAtom(removeTaskAtom);
-  const [, toggleTaskStatus] = useAtom(toggleStatusTaskAtom);
+  const [, manageTask] = useAtom(taskManagerAtom);
 
   const goToCreateTask = () => router.navigate('/create');
   const goToEditTask = (id: string) => router.navigate(`/edit/${id}`);
+
+  const removeTask = (id: string) =>
+    manageTask({ type: 'REMOVE', payload: id });
+  const toggleTaskStatus = (id: string) =>
+    manageTask({ type: 'TOGGLE_STATUS', payload: id });
 
   return (
     <Screen px={0} py={0}>

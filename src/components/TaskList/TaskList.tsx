@@ -1,4 +1,4 @@
-import { TaskType } from '@/src/atoms/TaskAtom';
+import { TaskType } from '@/src/atoms/TaskListAtom';
 import { globalStyles } from '@/src/styles/globalStyles';
 import { FlatList, ListRenderItem } from 'react-native';
 import { Separator, Spacer } from 'tamagui';

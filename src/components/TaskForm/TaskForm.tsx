@@ -1,10 +1,10 @@
-import { TaskType } from '@/src/atoms/TaskAtom';
+import { TaskType } from '@/src/atoms/TaskListAtom';
 import { DateInput } from '@/src/components/DateInput/DateInput';
 import { useToastController } from '@tamagui/toast';
 import React from 'react';
 import { Button, H2, Input, Spacer, YStack } from 'tamagui';
-import { defaultInitialTaskFormState } from './utils/defaultInitialTaskFormState';
 import { getDate } from './utils/getDate';
+import { getDefaultInitialTaskFormState } from './utils/getDefaultInitialTaskFormState';
 import { taskFromReducer } from './utils/taskFromReducer';
 
 interface CreateScreenFormProps {
@@ -25,7 +25,7 @@ function TaskForm(props: CreateScreenFormProps) {
   const toast = useToastController();
   const [state, dispatch] = React.useReducer(
     taskFromReducer,
-    props.initialState ?? defaultInitialTaskFormState,
+    props.initialState ?? getDefaultInitialTaskFormState(),
   );
 
   const onCreateTaskPress = () => {

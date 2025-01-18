@@ -1,4 +1,4 @@
-import { createTaskAtom, TaskType } from '@/src/atoms/TaskAtom';
+import { taskManagerAtom, TaskType } from '@/src/atoms/TaskListAtom';
 import { KeyboardView } from '@/src/components/KeyboardView/KeyboardView';
 import { Screen } from '@/src/components/Screen/Screen';
 import { TaskForm } from '@/src/components/TaskForm/TaskForm';
@@ -8,10 +8,10 @@ import { useAtom } from 'jotai';
 import { ScrollView } from 'tamagui';
 
 function CreateScreen() {
-  const [, createTask] = useAtom(createTaskAtom);
+  const [, manageTask] = useAtom(taskManagerAtom);
 
   const handleCreateTask = (value: TaskType) => {
-    createTask(value);
+    manageTask({ payload: value, type: 'CREATE' });
     router.dismissTo('/');
   };
 
